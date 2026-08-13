@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artifice · Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --surface:#2E322D;--sunken:#262A25;--raised:#363B34;
+  --border:#414639;--border-strong:#535a4b;
+  --text:#F4F8F3;--text-2:#A8B0A3;--text-3:#727a6b;
+  --accent:#F4F8F3;--on-accent:#181B16;
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",-apple-system,sans-serif;--mono:"JetBrains Mono",monospace;
+  --max:1320px;--gut:0px;--ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+em{font-family:var(--serif);font-style:italic}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.02em}
+.frame{max-width:var(--max);margin:0 auto;border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.pad{padding:0 40px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+:focus-visible{outline:2px solid rgba(244,248,243,.6);outline-offset:2px}
+
+.nav{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav .row{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{font-family:var(--serif);font-size:24px;letter-spacing:.02em}
+.nav a.lnk{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-2);margin-left:30px}
+.nav a.lnk:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:12px 20px;border-radius:0;margin-left:30px;transition:background .18s,transform .18s var(--ease)}
+.btn:hover{background:#fff;transform:translateY(-1px)}
+.btn.lg{font-size:12px;padding:16px 28px;margin:0}
+
+/* hero: full-bleed photo in frame, sharp overlay grid */
+.hero{position:relative;border-bottom:1px solid var(--border);overflow:hidden}
+.hero .img{position:relative;height:78vh;min-height:560px}
+.hero .img img{width:100%;height:100%;object-fit:cover;filter:brightness(.68) contrast(1.03);transform:scale(1.03);animation:kb 28s var(--ease) forwards}
+@keyframes kb{to{transform:scale(1.12)}}
+.hero .img::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(24,27,22,.5),rgba(24,27,22,.1) 40%,rgba(24,27,22,.75))}
+.hero .meta-top{position:absolute;top:24px;left:0;right:0;z-index:3;display:flex;justify-content:space-between}
+.hero .meta-top .mono{color:rgba(244,248,243,.75)}
+.hero .content{position:absolute;left:0;right:0;bottom:40px;z-index:3}
+.hero h1{font-size:clamp(48px,8.5vw,116px);line-height:.94;letter-spacing:-.03em;max-width:16ch}
+.hero h1 .l2{color:var(--text-2)}
+.hero .sub{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;margin-top:28px;border-top:1px solid rgba(244,248,243,.2);padding-top:22px}
+.hero .lead{font-size:17px;line-height:1.6;color:#e6ebe3;max-width:42ch}
+.hero .cta{display:flex;gap:18px;align-items:center}
+.hero .ghost{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#e6ebe3;border-bottom:1px solid rgba(244,248,243,.4);padding-bottom:2px}
+
+/* structured rows */
+.rowhead{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--border)}
+.rowhead .idx{border-right:1px solid var(--border);padding:20px 0 20px 40px;display:flex;align-items:center}
+.rowhead .idx .mono{color:var(--text-2)}
+.rowhead .h{padding:56px 40px}
+.rowhead h2{font-size:clamp(34px,5vw,60px);line-height:1.02;max-width:18ch}
+.rowhead .body{font-size:17px;line-height:1.8;color:var(--text-2);max-width:60ch;margin:22px 0 0}
+.rowhead .body+.body{margin-top:16px}
+
+/* values grid cells */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.vcell{padding:48px 40px;border-right:1px solid var(--border);min-height:280px;display:flex;flex-direction:column;transition:background .3s}
+.vcell:last-child{border-right:none}
+.vcell:hover{background:var(--sunken)}
+.vcell .vn{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-bottom:auto}
+.vcell h3{font-size:30px;margin:0 0 12px}
+.vcell p{font-size:15px;line-height:1.7;color:var(--text-2);margin:0;max-width:34ch}
+.vwrap{border-bottom:1px solid var(--border)}
+
+/* evening card */
+.ecard{border:1px solid var(--border-strong);max-width:560px;margin-top:8px}
+.ecard .top{padding:28px 32px;border-bottom:1px solid var(--border)}
+.ecard h3{font-size:30px;margin:10px 0 4px}
+.ecard .bot{padding:26px 32px}
+.ecard p{font-size:15px;line-height:1.7;color:var(--text-2);margin:0 0 22px}
+
+/* faq */
+.faqhead{padding:56px 40px 40px;border-bottom:1px solid var(--border)}
+.faqhead h2{font-size:clamp(34px,5vw,56px)}
+.fitem{border-bottom:1px solid var(--border)}
+.fq{width:100%;background:none;border:none;padding:26px 40px;display:grid;grid-template-columns:120px 1fr auto;gap:20px;cursor:pointer;text-align:left;color:var(--text);align-items:baseline}
+.fq .qn{font-family:var(--mono);font-size:11px;color:var(--text-3)}
+.fq .qt{font-family:var(--serif);font-size:23px}
+.fq:hover .qt{color:var(--text-2)}
+.fs{font-family:var(--mono);font-size:16px;color:var(--text-2)}
+.fa{overflow:hidden;max-height:0;transition:max-height .34s var(--ease)}
+.fa p{font-size:16px;line-height:1.75;color:var(--text-2);max-width:64ch;margin:0 40px 26px 180px}
+
+.founders{display:grid;grid-template-columns:repeat(2,240px);gap:0;margin-top:34px;border-top:1px solid var(--border-strong)}
+.founders .f{padding-top:18px;border-right:1px solid var(--border)}
+.founders .f:last-child{border-right:none;padding-left:0}
+.founders .n{font-family:var(--serif);font-size:22px}
+.founders .r{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-top:5px}
+
+.request{text-align:center;padding:120px 40px;border-bottom:1px solid var(--border)}
+.request .mono{margin-bottom:26px}
+.request h2{font-size:clamp(40px,7vw,88px);line-height:.98}
+.request p{font-size:17px;color:var(--text-2);max-width:46ch;margin:22px auto 34px}
+.request .re{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-top:24px;text-transform:uppercase;letter-spacing:.1em}
+
+.footer{padding:52px 40px 64px}
+.footer .g{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+.footer .brand{font-size:26px}
+.footer .tag{font-size:14px;color:var(--text-2);margin-top:10px}
+.footer h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin:0 0 14px}
+.footer a,.footer span{display:block;font-size:14px;color:var(--text-2);margin-bottom:9px}
+.footer a:hover{color:var(--text)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .pad,.rowhead .h,.faqhead,.request,.footer{padding-left:22px;padding-right:22px}
+  .rowhead,.vgrid,.footer .g{grid-template-columns:1fr}
+  .rowhead .idx{border-right:none;border-bottom:1px solid var(--border);padding:16px 22px}
+  .vcell{border-right:none;border-bottom:1px solid var(--border)}
+  .fq{grid-template-columns:1fr auto;padding:22px}
+  .fq .qn{display:none}
+  .fa p{margin-left:22px}
+  .nav a.lnk{display:none}
+  .founders{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero .img img{animation:none;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header class="nav"><div class="frame pad row">
+  <a href="#" class="brand">Artifice</a>
+  <nav aria-label="Primary" style="display:flex;align-items:center">
+    <a class="lnk" href="#idea">The Idea</a>
+    <a class="lnk" href="#evening">The Evening</a>
+    <a class="lnk" href="#faq">FAQ</a>
+    <a class="btn" href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">Become a Founding Member</a>
+  </nav>
+</div></header>
+
+<main class="frame">
+<section class="hero">
+  <div class="img">
+    <img src="assets/hero.webp" alt="A candlelit room set for a private gathering of collectors and artists">
+    <div class="pad meta-top"><span class="mono">Artifice · Est. MMXXVI</span><span class="mono">By invitation only</span></div>
+    <div class="pad content">
+      <h1>You've Always Had The Eye.<br><span class="l2">Now You Have The Room.</span></h1>
+      <div class="sub">
+        <p class="lead">A private circle where collectors meet the artists who will define their generation, over private gatherings and viewings.</p>
+        <div class="cta">
+          <a class="btn lg" href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">Become a Founding Member</a>
+          <a class="ghost" href="#values">Inside →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values" class="vwrap">
+  <div class="rowhead" style="border-bottom:none"><div class="idx"><span class="mono">01</span></div><div class="h" style="padding-bottom:32px"><span class="mono">What holds the room</span></div></div>
+  <div class="vgrid">
+    <div class="vcell reveal"><span class="vn">i.</span><h3>Chosen</h3><p>Who is in the room decides everything that follows. Seats are not filled. They are chosen, one by one.</p></div>
+    <div class="vcell reveal"><span class="vn">ii.</span><h3>Early</h3><p>You meet the artists who will define this generation before the market names its price. Early is the whole advantage.</p></div>
+    <div class="vcell reveal"><span class="vn">iii.</span><h3>Private</h3><p>What you collect and who you meet stays in the room. No lists, no press, no names shared without your say.</p></div>
+  </div>
+</section>
+
+<section id="idea" class="rowhead">
+  <div class="idx"><span class="mono">02</span></div>
+  <div class="h">
+    <h2 class="reveal">The room is small. <em>On purpose.</em></h2>
+    <p class="body reveal">An invitation-only circle of serious collectors. You meet the artists who'll define this generation before the market does. Not a mailing list. A room worth being in.</p>
+    <p class="body reveal">The art world has always moved the same way: quietly, early, among the connected. The artists you'll wish you'd found early are showing their work right now, in rooms you're not in. Artifice changes who's connected.</p>
+  </div>
+</section>
+
+<section id="evening" class="rowhead">
+  <div class="idx"><span class="mono">03</span></div>
+  <div class="h">
+    <h2 class="reveal">It begins with <em>one room.</em></h2>
+    <p class="body reveal">The first evening is a gathering. A small group of collectors and the artists we believe in most, in one room. No stage. No pitch. Everyone in it chosen.</p>
+    <div class="ecard reveal">
+      <div class="top"><span class="mono">A private evening</span><!-- PLACEHOLDER: confirm season + city --><h3>Autumn 2026, New York</h3><span class="mono">Limited places</span></div>
+      <div class="bot"><p>The date and the address go to the room first. Request an invitation to be among them.</p><a class="btn lg" href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">Become a Founding Member</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="faqhead"><span class="mono">04 / Frequently asked</span><h2 class="reveal" style="margin-top:14px">Questions, <em>answered.</em></h2></div>
+  <div class="fitem"><button class="fq" aria-expanded="false"><span class="qn">4.1</span><span class="qt">How do I get into Artifice?</span><span class="fs">+</span></button><div class="fa"><p>By invitation, or by request. Most members are introduced by someone already in the room. If no one has brought you yet, request an invitation below and tell us what you collect. We read every one.</p></div></div>
+  <div class="fitem"><button class="fq" aria-expanded="false"><span class="qn">4.2</span><span class="qt">What does it cost?</span><span class="fs">+</span></button><div class="fa"><p>Founding membership is free. We're building the room first, and the founding circle joins before there is any fee to speak of. If that ever changes, founding members hear it from us first.</p></div></div>
+  <div class="fitem"><button class="fq" aria-expanded="false"><span class="qn">4.3</span><span class="qt">Who runs Artifice?</span><span class="fs">+</span></button><div class="fa"><p>Artifice is built by Ryan and Sophia. Ryan leads the circle as CEO; Sophia runs it day to day as COO. When you write, you're writing to the people who decide who's in the room.</p></div></div>
+  <div class="fitem"><button class="fq" aria-expanded="false"><span class="qn">4.4</span><span class="qt">Do I have to buy anything?</span><span class="fs">+</span></button><div class="fa"><p>No. Artifice is a circle, not a sales floor. You'll meet artists and see work, but nothing is for sale unless you want it to be. No pressure, no pitch.</p></div></div>
+  <div class="fitem"><button class="fq" aria-expanded="false"><span class="qn">4.5</span><span class="qt">Is my collecting private?</span><span class="fs">+</span></button><div class="fa"><p>Yes. What you own, what you're looking at, and what you buy stays between you and the room. We don't publish members or share your name without your say.</p></div></div>
+</section>
+
+<section id="founding" class="rowhead">
+  <div class="idx"><span class="mono">05</span></div>
+  <div class="h">
+    <h2 class="reveal">Be early to the room, <em>not just the art.</em></h2>
+    <p class="body reveal">Artifice opens with a founding circle: the collectors who join before the room is full. They set its tone and shape who comes next. The founding circle is capped at 50, and membership is free while it forms. As the seats fill, the door closes.</p>
+    <!-- PLACEHOLDER: confirm cap (50) -->
+    <div class="founders reveal">
+      <div class="f"><div class="n">Ryan</div><div class="r">Chief Executive</div></div>
+      <div class="f"><div class="n">Sophia</div><div class="r">Chief Operating Officer</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="request">
+  <span class="mono">06 / Request an invitation</span>
+  <h2 class="reveal">Request an invitation.</h2>
+  <p class="reveal">Tell us who you are and what brings you. If Artifice is right for you, we'll write back within a few days.</p>
+  <a class="btn lg reveal" href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">Become a Founding Member</a>
+  <p class="re reveal">Your details stay between us. No lists, no sharing.</p>
+</section>
+
+<footer class="footer"><div class="g">
+  <div><div class="brand">Artifice</div><p class="tag">An invitation-only circle for art collectors.</p></div>
+  <div><h4>The circle</h4><a href="#idea">The Idea</a><a href="#evening">The Evening</a><a href="#founding">Founding members</a></div>
+  <div><h4>More</h4><a href="#faq">FAQ</a><a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">For artists &amp; galleries</a><a href="mailto:info@jointartifice.art">info@jointartifice.art</a></div>
+</div></footer>
+</main>
+
+<script>
+document.querySelectorAll('.fq').forEach(b=>b.addEventListener('click',()=>{
+  const p=b.nextElementSibling,open=b.getAttribute('aria-expanded')==='true';
+  document.querySelectorAll('.fq[aria-expanded="true"]').forEach(o=>{o.setAttribute('aria-expanded','false');o.querySelector('.fs').textContent='+';o.nextElementSibling.style.maxHeight=null;});
+  if(!open){b.setAttribute('aria-expanded','true');b.querySelector('.fs').textContent='−';p.style.maxHeight=p.scrollHeight+'px';}
+}));
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(rm)document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in'));
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15,rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));}
+</script>
+</body></html>

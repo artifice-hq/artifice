@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artifice · An invitation-only circle for art collectors</title>
+<meta name="description" content="A private circle where collectors meet the artists who will define their generation, over private gatherings and viewings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --surface:#2E322D;
+  --surface-raised:#363B34;
+  --surface-sunken:#262A25;
+  --border:#3E4339;
+  --border-strong:#4A5147;
+  --text:#F4F8F3;
+  --text-secondary:#A8B0A3;
+  --text-tertiary:#6E7669;
+  --accent:#F4F8F3;
+  --on-accent:#181B16;
+  --focus:rgba(244,248,243,0.55);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --content-max:1180px;
+  --gutter:40px;
+  --band:120px;
+  --ease:cubic-bezier(0.2,0.8,0.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--surface);color:var(--text);
+  font-family:var(--font-sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+em{font-family:var(--font-serif);font-style:italic}
+h1,h2,h3{font-family:var(--font-serif);font-weight:400;letter-spacing:-0.015em;margin:0}
+.wrap{max-width:var(--content-max);margin:0 auto;padding:0 var(--gutter)}
+.band{padding:var(--band) 0}
+.eyebrow{font-family:var(--font-sans);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 24px}
+.lead{font-size:18px;line-height:1.7;color:var(--text-secondary);max-width:58ch}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(46,50,45,0.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s var(--ease)}
+.nav.scrolled{border-bottom-color:var(--border)}
+.nav .row{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font-family:var(--font-serif);font-size:24px;letter-spacing:0.01em}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:13px;color:var(--text-secondary);transition:color .2s var(--ease)}
+.nav-links a:hover{color:var(--text)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-sans);font-weight:500;font-size:14px;letter-spacing:0.01em;border-radius:4px;cursor:pointer;transition:transform .18s var(--ease),background-color .18s var(--ease),color .18s var(--ease);border:1px solid transparent}
+.btn-solid{background:var(--accent);color:var(--on-accent);padding:14px 28px}
+.btn-solid:hover{background:#fff;transform:translateY(-1px)}
+.btn-solid:active{transform:translateY(0)}
+.btn-sm{padding:10px 20px;font-size:13px}
+.btn-ghost{color:var(--text);border-bottom:1px solid rgba(244,248,243,0.4);border-radius:0;padding:4px 1px;transition:border-color .2s var(--ease),color .2s var(--ease)}
+.btn-ghost:hover{border-bottom-color:var(--text)}
+
+/* Hero */
+.hero{position:relative;min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:#141613}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.9;transform:scale(1.04);animation:kenburns 26s var(--ease) forwards}
+@keyframes kenburns{to{transform:scale(1.14)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.hero-inner > *{opacity:0;animation:riseIn 1s var(--ease) forwards}
+.hero-inner > *:nth-child(1){animation-delay:.15s}
+.hero-inner > *:nth-child(2){animation-delay:.32s}
+.hero-inner > *:nth-child(3){animation-delay:.5s}
+.hero-inner > *:nth-child(4){animation-delay:.72s}
+.hero-inner > *:nth-child(5){animation-delay:.92s}
+.hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(120% 92% at 50% 46%, rgba(16,18,15,0.55) 0%, rgba(16,18,15,0.6) 34%, rgba(16,18,15,0.8) 66%, #101210 100%),
+  linear-gradient(to bottom, rgba(20,22,19,0.6) 0%, rgba(20,22,19,0) 26%, rgba(20,22,19,0) 62%, rgba(20,22,19,0.92) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--content-max);padding:0 var(--gutter);display:flex;flex-direction:column;align-items:center}
+.pill{display:inline-flex;align-items:center;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--on-accent);padding:7px 16px;border-radius:999px;background:var(--accent);margin:0 0 26px}
+.hero-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 26px}
+.hero h1{font-size:clamp(40px,7vw,82px);line-height:1.04;letter-spacing:-0.02em;text-wrap:balance}
+.hero .lead{color:var(--text-secondary);max-width:50ch;text-align:center;margin:28px 0 40px;font-size:17px}
+.hero-cta{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap}
+.hero-strip{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid rgba(244,248,243,0.14)}
+.hero-strip .wrap{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-secondary)}
+
+/* Values */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:8px}
+.value{transition:transform .45s var(--ease)}
+.value:hover{transform:translateY(-6px)}
+.value h3{font-size:28px;margin:0 0 12px}
+.value .ico{color:var(--text);margin:0 0 24px;transition:transform .45s var(--ease)}
+.value:hover .ico{transform:scale(1.08) rotate(-3deg)}
+.value p{font-size:15px;line-height:1.7;color:var(--text-secondary);margin:0;max-width:34ch}
+
+/* Prose bands */
+.prose h2{font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-0.02em;max-width:18ch}
+.prose .body{font-size:18px;line-height:1.75;color:var(--text-secondary);max-width:62ch;margin:28px 0 0}
+.prose .body + .body{margin-top:20px}
+.band-alt{background:var(--surface-sunken);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* Evening card */
+.evening-card{margin-top:40px;max-width:560px;background:var(--surface-raised);border:1px solid var(--border);border-radius:8px;padding:32px;transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.evening-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:0 16px 50px rgba(0,0,0,0.4)}
+.evening-card .k{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-secondary);margin:0}
+.evening-card h3{font-size:28px;margin:14px 0 4px}
+.evening-card .meta{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-tertiary);margin:0 0 20px}
+.evening-card p{font-size:15px;line-height:1.7;color:var(--text-secondary);margin:0 0 24px;max-width:46ch}
+
+/* FAQ */
+.faq h2{font-size:clamp(34px,5vw,52px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 48px}
+.faq-list{border-top:1px solid var(--border-strong)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:32px;cursor:pointer;text-align:left;color:var(--text);font-family:var(--font-serif);font-size:23px;letter-spacing:-0.01em;transition:color .2s var(--ease)}
+.faq-q:hover{color:var(--text-secondary)}
+.faq-sign{font-family:var(--font-sans);font-size:20px;color:var(--text-tertiary);flex:none;line-height:1}
+.faq-a{overflow:hidden;max-height:0;transition:max-height .34s var(--ease)}
+.faq-a p{font-size:16px;line-height:1.75;color:var(--text-secondary);max-width:64ch;margin:0 0 26px}
+
+/* Founding meta */
+.founders{display:flex;gap:40px;flex-wrap:wrap;margin-top:36px}
+.founder .n{font-family:var(--font-serif);font-size:22px}
+.founder .r{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-tertiary);margin-top:2px}
+.note-strong{color:var(--text-secondary)}
+
+/* Request */
+.request{border-top:1px solid var(--border);padding:calc(var(--band) * 1.25) 0}
+.request .inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px}
+.request h2{font-size:clamp(34px,5vw,52px);line-height:1.1}
+.request .lead{text-align:center;max-width:52ch}
+.reassure{font-size:13px;color:var(--text-secondary);margin:0}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:64px 0 72px}
+.footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.footer .brand{font-size:26px}
+.footer .tag{font-size:14px;color:var(--text-secondary);margin:12px 0 0;max-width:34ch}
+.footer .col h4{font-family:var(--font-sans);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-tertiary);font-weight:600;margin:0 0 16px}
+.footer .col a,.footer .col span{display:block;font-size:14px;color:var(--text-secondary);margin-bottom:10px;transition:color .2s var(--ease)}
+.footer .col a:hover{color:var(--text)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger > .reveal:nth-child(2){transition-delay:.08s}
+.stagger > .reveal:nth-child(3){transition-delay:.16s}
+.stagger > .reveal:nth-child(4){transition-delay:.24s}
+
+@media (max-width:860px){
+  :root{--band:80px;--gutter:24px}
+  .nav-links a{display:none}
+  .values-grid{grid-template-columns:1fr;gap:44px}
+  .footer .grid{grid-template-columns:1fr;gap:36px}
+  .founders{gap:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-inner > *{opacity:1;animation:none}
+  .hero-bg img{animation:none;transform:none}
+  .value:hover,.evening-card:hover{transform:none}
+  .btn,.faq-a{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap row">
+    <a href="#hero" class="brand">Artifice</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#idea">The Idea</a>
+      <a href="#evening">The Evening</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener" class="btn btn-solid btn-sm">Become a Founding Member</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-bg"><img src="assets/hero.webp" alt="A candlelit room set for a private gathering of collectors and artists" fetchpriority="high"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <span class="pill">Members only</span>
+    <p class="hero-eyebrow">An invitation-only circle for art collectors</p>
+    <h1>You've Always Had The Eye.<br>Now You Have The Room<em>.</em></h1>
+    <p class="lead">A private circle where collectors meet the artists who will define their generation, over private gatherings and viewings.</p>
+    <div class="hero-cta">
+      <a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener" class="btn btn-solid">Become a Founding Member</a>
+      <a href="#values" class="btn-ghost">See what happens inside →</a>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="wrap">
+      <span>Founding circle</span>
+      <span>Now forming</span>
+      <span>By invitation only</span>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" class="band">
+  <div class="wrap">
+    <p class="eyebrow reveal">What holds the room</p>
+    <div class="values-grid stagger">
+      <div class="value reveal">
+        <div class="ico">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5Z"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>
+        </div>
+        <h3>Chosen</h3>
+        <p>Who is in the room decides everything that follows. Seats are not filled. They are chosen, one by one.</p>
+      </div>
+      <div class="value reveal">
+        <div class="ico">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.25"/><path d="M12 7.5V12l3 2"/></svg>
+        </div>
+        <h3>Early</h3>
+        <p>You meet the artists who will define this generation before the market names its price. Early is the whole advantage.</p>
+      </div>
+      <div class="value reveal">
+        <div class="ico">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c1.6 1.8 2.4 3.3 2.4 4.6a2.4 2.4 0 0 1-4.8 0c0-1.3.8-2.8 2.4-4.6Z"/><path d="M8 12.5h8v6a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 18.5v-6Z"/></svg>
+        </div>
+        <h3>Private</h3>
+        <p>What you collect and who you meet stays in the room. No lists, no press, no names shared without your say.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT ARTIFICE IS (idea + belief merged) -->
+<section id="idea" class="band band-alt prose">
+  <div class="wrap">
+    <p class="eyebrow reveal">What Artifice is</p>
+    <h2 class="reveal">The room is small. <em>On purpose.</em></h2>
+    <p class="body reveal">An invitation-only circle of serious collectors. You meet the artists who'll define this generation before the market does. Not a mailing list. A room worth being in.</p>
+    <p class="body reveal">The art world has always moved the same way: quietly, early, among the connected. The artists you'll wish you'd found early are showing their work right now, in rooms you're not in. Artifice changes who's connected.</p>
+  </div>
+</section>
+
+<!-- THE EVENING -->
+<section id="evening" class="band prose">
+  <div class="wrap">
+    <p class="eyebrow reveal">The first evening</p>
+    <h2 class="reveal">It begins with <em>one room.</em></h2>
+    <p class="body reveal">The first evening is a gathering. A small group of collectors and the artists we believe in most, in one room. No stage. No pitch. Everyone in it chosen.</p>
+    <div class="evening-card reveal">
+      <p class="k">A private evening</p>
+      <!-- PLACEHOLDER: confirm real first-evening season + city -->
+      <h3>Autumn 2026, New York</h3>
+      <p class="meta">Limited places</p>
+      <p>The date and the address go to the room first. Request an invitation to be among them.</p>
+      <a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener" class="btn btn-solid">Become a Founding Member</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="band faq">
+  <div class="wrap">
+    <h2 class="reveal">Questions, <em>answered.</em></h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>How do I get into Artifice?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>By invitation, or by request. Most members are introduced by someone already in the room. If no one has brought you yet, request an invitation below and tell us what you collect. We read every one.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Who is Artifice for?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>Serious collectors who have the eye and want in the room earlier. You don't need a famous name or a museum-sized collection. You need real taste and the intent to build.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>What does it cost?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>Founding membership is free. We're building the room first, and the founding circle joins before there is any fee to speak of. If that ever changes, founding members hear it from us first.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Who runs Artifice?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>Artifice is built by Ryan and Sophia. Ryan leads the circle as CEO; Sophia runs it day to day as COO. When you write, you're writing to the people who decide who's in the room.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Do I have to buy anything?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>No. Artifice is a circle, not a sales floor. You'll meet artists and see work, but nothing is for sale unless you want it to be. No pressure, no pitch.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Is my collecting private?</span><span class="faq-sign">+</span></button>
+        <div class="faq-a"><p>Yes. What you own, what you're looking at, and what you buy stays between you and the room. We don't publish members or share your name without your say.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING -->
+<section id="founding" class="band band-alt prose">
+  <div class="wrap">
+    <p class="eyebrow reveal">Founding members</p>
+    <h2 class="reveal">Be early to the room, <em>not just the art.</em></h2>
+    <p class="body reveal">Artifice opens with a founding circle: the collectors who join before the room is full. They set its tone and shape who comes next. <span class="note-strong">The founding circle is capped at 50, and membership is free while it forms.</span> As the seats fill, the door closes.</p>
+    <!-- PLACEHOLDER: confirm real founding cap (50) -->
+    <div class="founders reveal">
+      <div class="founder"><div class="n">Ryan</div><div class="r">Chief Executive</div></div>
+      <div class="founder"><div class="n">Sophia</div><div class="r">Chief Operating Officer</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST -->
+<section id="request" class="request">
+  <div class="wrap inner">
+    <h2 class="reveal">Request an invitation.</h2>
+    <p class="lead reveal">Tell us who you are and what brings you. If Artifice is right for you, we'll write back within a few days.</p>
+    <a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener" class="btn btn-solid reveal">Become a Founding Member</a>
+    <p class="reassure reveal">Your details stay between us. No lists, no sharing.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap grid">
+    <div>
+      <div class="brand">Artifice</div>
+      <p class="tag">An invitation-only circle for art collectors.</p>
+    </div>
+    <div class="col">
+      <h4>The circle</h4>
+      <a href="#idea">The Idea</a>
+      <a href="#evening">The Evening</a>
+      <a href="#founding">Founding members</a>
+    </div>
+    <div class="col">
+      <h4>More</h4>
+      <a href="#faq">FAQ</a>
+      <a href="https://tally.so/r/vGpo1A" target="_blank" rel="noopener">For artists &amp; galleries</a>
+      <a href="mailto:info@jointartifice.art">info@jointartifice.art</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav border on scroll
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>8);
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panel=btn.nextElementSibling;
+    const open=btn.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(o=>{
+      o.setAttribute('aria-expanded','false');
+      o.querySelector('.faq-sign').textContent='+';
+      o.nextElementSibling.style.maxHeight=null;
+    });
+    if(!open){
+      btn.setAttribute('aria-expanded','true');
+      btn.querySelector('.faq-sign').textContent='−';
+      panel.style.maxHeight=panel.scrollHeight+'px';
+    }
+  });
+});
+
+// Scroll reveal (IntersectionObserver, respects reduced motion)
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));}
+else{
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+</script>
+</body>
+</html>
