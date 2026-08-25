@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artifice</title>
+<meta name="description" content="The artists worth knowing, before everyone knows them.">
+  <meta name="theme-color" content="#2E322D">
+  <meta property="og:title" content="Artifice">
+  <meta property="og:description" content="The artists worth knowing, before everyone knows them.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://joinartifice.art/links">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<style>
+  /* Self-hosted brand fonts (same kit as the homepage). */
+  @font-face{font-family:"Verdigris MVB";src:url("/assets/fonts/Verdigris-Regular.woff2") format("woff2"),url("/assets/fonts/Verdigris-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Sole Sans";src:url("/assets/fonts/SoleSans-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:"Sole Sans";src:url("/assets/fonts/SoleSans-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+  :root{
+    /* Two colors only. Warmth comes from candlelight, never added color. */
+    --olive:#2E322D;        /* Charred Olive - primary */
+    --porcelain:#F4F8F3;    /* Mint Porcelain - light */
+    --forest:#242921;       /* Deep Forest - type on light surfaces only */
+
+    --title:"Verdigris MVB",Georgia,serif;
+    --body:"Sole Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--olive);
+    color:var(--porcelain);
+    font-family:var(--body);
+    min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:56px 24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{width:100%;max-width:440px}
+
+  .mark{
+    font-family:var(--title);
+    font-weight:500;
+    font-size:clamp(3.6rem,15vw,5.4rem);
+    letter-spacing:0.01em;
+    line-height:1;
+    color:var(--porcelain);
+  }
+  .tagline{
+    font-family:var(--title);
+    font-style:italic;font-weight:400;
+    font-size:clamp(1rem,4vw,1.18rem);
+    color:var(--porcelain);opacity:0.9;
+    margin-top:20px;line-height:1.55;
+  }
+  .rule{
+    width:38px;height:1px;background:var(--porcelain);
+    opacity:0.35;margin:36px auto 46px;
+  }
+
+  .links{display:flex;flex-direction:column;gap:34px}
+  .link{display:block;text-decoration:none;transition:opacity .3s ease}
+  .link .title{
+    display:block;
+    font-family:var(--title);font-weight:400;
+    font-size:1.55rem;letter-spacing:0.01em;
+    color:var(--porcelain);transition:opacity .3s ease;
+  }
+  .link .url{
+    display:block;margin-top:7px;
+    font-family:var(--body);font-weight:400;
+    font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--porcelain);opacity:0.55;transition:opacity .3s ease;
+  }
+  .link:hover .title,.link:focus-visible .title{opacity:0.72}
+  .link:hover .url,.link:focus-visible .url{opacity:0.85}
+  .link:focus-visible{outline:1px solid var(--porcelain);outline-offset:8px;border-radius:2px}
+
+  .foot{
+    margin-top:54px;
+    font-family:var(--body);
+    font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;
+    color:var(--porcelain);opacity:0.45;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1 class="mark">Artifice</h1>
+    <p class="tagline">The artists worth knowing,<br>before everyone knows them</p>
+    <div class="rule" aria-hidden="true"></div>
+
+    <nav class="links" aria-label="Artifice channels">
+      <a class="link" href="https://joinartifice.art/" target="_blank" rel="noopener">
+        <span class="title">The House</span>
+        <span class="url">joinartifice.art</span>
+      </a>
+      <a class="link" href="https://substack.com/@artificehq" target="_blank" rel="noopener">
+        <span class="title">The Dispatch</span>
+        <span class="url">substack.com/@artificehq</span>
+      </a>
+      <a class="link" href="https://www.instagram.com/artifice.hq" target="_blank" rel="noopener">
+        <span class="title">The Feed</span>
+        <span class="url">instagram.com/artifice.hq</span>
+      </a>
+    </nav>
+
+    <p class="foot">The list is the room</p>
+  </main>
+</body>
+</html>
