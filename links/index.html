@@ -19,10 +19,13 @@
   @font-face{font-family:"Sole Sans";src:url("/assets/fonts/SoleSans-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
 
   :root{
-    /* Two colors only. Warmth comes from candlelight, never added color. */
+    /* Charred Olive + Mint Porcelain, plus a single ember accent that is
+       carried by exactly one element on this page: the rule. */
     --olive:#2E322D;        /* Charred Olive - primary */
     --porcelain:#F4F8F3;    /* Mint Porcelain - light */
     --forest:#242921;       /* Deep Forest - type on light surfaces only */
+    --ember:#B23A2E;        /* accent - the rule at rest */
+    --ember-deep:#822921;   /* accent - the rule while a channel is hovered */
 
     --title:"Verdigris MVB",Georgia,serif;
     --body:"Sole Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -59,9 +62,15 @@
     margin-top:20px;line-height:1.55;
   }
   .rule{
-    width:38px;height:1px;background:var(--porcelain);
-    opacity:0.35;margin:36px auto 46px;
+    width:38px;height:1px;background:var(--ember);
+    margin:36px auto 46px;
+    transition:background-color .3s ease;
   }
+  /* The accent is the page's one moving part: hovering any channel
+     deepens the rule. :has() is progressive - without it the rule
+     simply stays at rest, which is a valid resting state. */
+  .card:has(.link:hover) .rule,
+  .card:has(.link:focus-visible) .rule{background:var(--ember-deep)}
 
   .links{display:flex;flex-direction:column;gap:34px}
   .link{display:block;text-decoration:none;transition:opacity .3s ease}
